@@ -11,7 +11,7 @@ class Nav extends React.Component{
                 <li><a href='#'>Computers</a></li>
                 </ul>
             </nav>
-                )
+        )
     }
 }
 
