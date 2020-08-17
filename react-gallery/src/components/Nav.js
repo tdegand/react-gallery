@@ -4,7 +4,7 @@ import React from 'react';
 class Nav extends React.Component{
     render() {
         return(
-            <nav class="main-nav">
+            <nav className="main-nav">
                 <ul>
                 <li><a href='/cats'>Cats</a></li>
                 <li><a href='/dogs'>Dogs</a></li>

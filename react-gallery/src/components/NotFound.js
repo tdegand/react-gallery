@@ -4,7 +4,10 @@ import React from 'react';
 class NotFound extends React.Component{
     render() {
         return(
-            <h1>Sorry, This page could not be found</h1>
+            <li className="not-found">
+                <h3>No Results Found</h3>
+                <p>You search did not return any results. Please try again.</p>
+            </li>
         )   
     }
 }
