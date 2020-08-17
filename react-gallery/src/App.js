@@ -12,6 +12,9 @@ class App extends Component{
           <h1>All items will go here</h1>
           <SearchForm />
           <Nav />
+        </div>[-]
+        <div class="photo-container">
+          
         </div>
       </div>
     );
