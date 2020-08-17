@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import './css/index.css'
 import SearchForm from './components/Search';
 import Nav from './components/Nav'
-import PhotoCon from './components/Photocon';
+import Photo from './components/Photo'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom'
 
 class App extends Component{
   render() {
@@ -12,9 +18,9 @@ class App extends Component{
           <h1>All items will go here</h1>
           <SearchForm />
           <Nav />
-        </div>[-]
+        </div>
         <div class="photo-container">
-          
+          <Photo />
         </div>
       </div>
     );
