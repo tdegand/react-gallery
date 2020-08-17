@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import './css/index.css'
 import SearchForm from './components/Search';
 import Nav from './components/Nav'
-import Photo from './components/Photo'
-import NotFound from './components/NotFound'
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Router from './components/Router';
 
 
 class App extends Component{
@@ -16,17 +14,7 @@ class App extends Component{
           <SearchForm />
           <Nav />
         </div>
-        <BrowserRouter>
-          <div className="photo-container">
-            <Switch>
-              <Route exact path="/" component={Photo} />
-              <Route path="/cats" component={Photo} />
-              <Route path="/dogs" component={Photo} />
-              <Route path="/computers" component={Photo} />
-              <Route component={NotFound} />
-            </Switch>
-          </div>
-        </BrowserRouter>
+        <Router />
       </div>
     );
   }
