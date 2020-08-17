@@ -3,12 +3,6 @@ import './css/index.css'
 import SearchForm from './components/Search';
 import Nav from './components/Nav'
 import Photo from './components/Photo'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
 
 class App extends Component{
   render() {
