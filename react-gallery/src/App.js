@@ -3,6 +3,8 @@ import './css/index.css'
 import SearchForm from './components/Search';
 import Nav from './components/Nav'
 import Photo from './components/Photo'
+import { Route, BrowserRouter } from 'react-router-dom';
+
 
 class App extends Component{
   render() {
@@ -13,9 +15,14 @@ class App extends Component{
           <SearchForm />
           <Nav />
         </div>
-        <div class="photo-container">
-          <Photo />
-        </div>
+        <BrowserRouter>
+          <div class="photo-container">
+            <Route exact path="/" component={Photo} />
+            <Route path="/cats" component={Photo} />
+            <Route path="/cats" component={Photo} />
+            <Route path="/cats" component={Photo} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
