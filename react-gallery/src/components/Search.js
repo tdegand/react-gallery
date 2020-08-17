@@ -1,6 +1,7 @@
 //state component for search bar
 import React from 'react';
 
+//Creates Search from users will use to search for images
 class SearchForm extends React.Component{
     render() {
         return(

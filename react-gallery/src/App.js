@@ -15,6 +15,7 @@ class App extends Component{
     };
   }
 
+  //API call for the images to get it started
   componentDidMount(){
     axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Cats&text=Cats&per_page=24&format=json&nojsoncallback=1')
     .then(response => {

@@ -1,6 +1,7 @@
 //stateless component
 import React from 'react';
 
+//Renders a not found message if users naviaget to URL that does not exist
 class NotFound extends React.Component{
     render() {
         return(
