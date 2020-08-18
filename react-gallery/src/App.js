@@ -11,20 +11,40 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
-      topic1: [],
-      topic2: [],
-      topic3: [],
+      cats: [],
+      dogs: [],
+      computers: [],
       search: []
     };
   }
 
   //API call for the images to get it started
   componentDidMount(){
-    axios.get('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Cats&text=Cats&per_page=24&format=json&nojsoncallback=1')
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Cats&text=Cats&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       console.log(response.data.photos)
       this.setState({
-        images: response.data.photos
+        cats: response.data.photos
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Dogs&text=Dogs&per_page=24&format=json&nojsoncallback=1`)
+    .then(response => {
+      console.log(response.data.photos)
+      this.setState({
+        dogs: response.data.photos
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Computers&text=Computers&per_page=24&format=json&nojsoncallback=1`)
+    .then(response => {
+      console.log(response.data.photos)
+      this.setState({
+        computers: response.data.photos
       })
     })
     .catch(error => {
@@ -40,7 +60,13 @@ class App extends Component{
           <SearchForm />
           <Nav />
         </div>
-        <Router />
+        <div className="photo-container">
+        <Router  
+          cats={this.state.cats}
+          dogs={this.state.dogs}
+          computers={this.state.computers}
+        />
+        </div>
       </div>
     );
   }

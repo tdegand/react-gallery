@@ -1,5 +1,5 @@
 import React from 'react';
-import Photo from './Photo'
+import PhotoList from './PhotoList'
 import NotFound from './NotFound';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
@@ -7,15 +7,13 @@ class Router extends React.Component {
     render() {
         return(
             <BrowserRouter>
-                <div className="photo-container">
                     <Switch>
-                    <Route exact path="/" component={Photo} />
-                    <Route path="/cats" component={Photo} />
-                    <Route path="/dogs" component={Photo} />
-                    <Route path="/computers" component={Photo} />
+                    <Route exact path="/" component={PhotoList} />
+                    <Route path="/cats" component={PhotoList} />
+                    <Route path="/dogs" component={PhotoList} />
+                    <Route path="/computers" component={PhotoList} />
                     <Route component={NotFound} />
                     </Switch>
-                </div>
             </BrowserRouter>
         )
     }
