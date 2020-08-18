@@ -9,6 +9,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 
 class App extends Component{
@@ -16,7 +17,7 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
     };
   }
 
@@ -35,7 +36,8 @@ class App extends Component{
   
  
   render() {
-    console.log(this.state.data)
+    let pathName = (window.location.pathname)
+    console.log(pathName)
     return ( 
       <Router>
       <div className="App">
@@ -52,6 +54,9 @@ class App extends Component{
             <Route exact path="/:page" render={props => (
               <PhotoList data={this.state.data} />
             )} />
+            {/* <Route path="/:page?search=" render={props => (
+              // <Redirect push to={`/${queryString}`} />
+            )} /> */}
             <Route component={NotFound} />
           </Switch>
         </div>
