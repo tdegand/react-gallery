@@ -2,10 +2,16 @@ import React, {Component} from 'react';
 import './css/index.css'
 import axios from 'axios';
 import SearchForm from './components/Search';
-import Nav from './components/Nav'
+import NavRouter from './components/NavRouter';
 import PhotoList from './components/PhotoList'
 import NotFound from './components/NotFound';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 
 
 
@@ -57,29 +63,31 @@ class App extends Component{
 
   render() {
     return (       
+      <Router>
       <div className="App">
         <div className="container">  
           <h1>All items will go here</h1>
           <SearchForm />
-          <Nav />
+          <NavRouter  />
         </div>
         <div className="photo-container">
-        <PhotoList  
-          cats={this.state.cats}
-          dogs={this.state.dogs}
-          computers={this.state.computers}
-        />
-        </div>
-        <BrowserRouter>
           <Switch>
             <Route exact path="/" component={PhotoList} />
-            <Route path="/cats" component={PhotoList} />
-            <Route path="/dogs" component={PhotoList} />
-            <Route path="/computers" component={PhotoList} />
+            <Route path="/cats" render={props => (
+              <PhotoList cats={this.state.cats} />
+            )} />
+            <Route path="/dogs" render={props => (
+              <PhotoList dogs={this.state.dogs} />
+            )} />
+            <Route path="/computers" render={props => (
+              <PhotoList computers={this.state.computers} />
+            )} />
             <Route component={NotFound} />
           </Switch>
-        </BrowserRouter>
+        </div>
+          
       </div>
+      </Router>
     );
   }
 }

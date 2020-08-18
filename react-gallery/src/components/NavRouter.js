@@ -1,6 +1,8 @@
 //stateless component
 import React from 'react';
 
+
+
 // Displays the Top level navigation
 class Nav extends React.Component{
     render() {
