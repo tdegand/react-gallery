@@ -11,8 +11,6 @@ import {
   Route,
 } from "react-router-dom";
 
-
-
 class App extends Component{
 
   constructor() {
@@ -35,12 +33,9 @@ class App extends Component{
       })
   }
   
-
-  
  
   render() {
-    let pathName = window.location.pathname;
-    console.log(pathName)
+    console.log(this.state.data)
     return ( 
       <Router>
       <div className="App">
@@ -60,7 +55,6 @@ class App extends Component{
             <Route component={NotFound} />
           </Switch>
         </div>
-          
       </div>
       </Router>
     );

@@ -12,6 +12,7 @@ const PhotoList = props => {
                 id={data.id}
                 secret={data.secret}
                 key={data.id}
+                title={data.title}
             />
         );
 
