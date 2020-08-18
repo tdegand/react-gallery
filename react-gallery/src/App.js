@@ -3,7 +3,10 @@ import './css/index.css'
 import axios from 'axios';
 import SearchForm from './components/Search';
 import Nav from './components/Nav'
-import Router from './components/Router';
+import PhotoList from './components/PhotoList'
+import NotFound from './components/NotFound';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+
 
 
 class App extends Component{
@@ -53,7 +56,7 @@ class App extends Component{
   }
 
   render() {
-    return (
+    return (       
       <div className="App">
         <div className="container">  
           <h1>All items will go here</h1>
@@ -61,12 +64,21 @@ class App extends Component{
           <Nav />
         </div>
         <div className="photo-container">
-        <Router  
+        <PhotoList  
           cats={this.state.cats}
           dogs={this.state.dogs}
           computers={this.state.computers}
         />
         </div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={PhotoList} />
+            <Route path="/cats" component={PhotoList} />
+            <Route path="/dogs" component={PhotoList} />
+            <Route path="/computers" component={PhotoList} />
+            <Route component={NotFound} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }

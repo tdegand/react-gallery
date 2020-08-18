@@ -4,10 +4,12 @@ import Image from './Image';
 //Photo Component to render the APi call for each photo.
 const PhotoList = props => {
     
-    const catResults = props.cats;
-    let cats = catResults.map(cat =>
+    let catData= props.cats.map(cat => 
         <Image 
-            url={'https://farm' + cat.photo.farm + '.staticflickr.com/' + cat.photo.server + '/' + cat.photo.id + '_' + cat.photo.secret +'.jpg'}
+            farm={cat.photo.farm}
+            server={cat.photo.server}
+            id={cat.photo.id}
+            secret={cat.photo.secret}
         />
     );
     // const dogResults = props.dogs;
@@ -15,7 +17,7 @@ const PhotoList = props => {
 
     return(
         <ul>
-            {cats}
+            {catData}
         </ul>
     )
 }
