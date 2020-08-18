@@ -20,10 +20,7 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
-      cats: [],
-      dogs: [],
-      computers: [],
-      search: []
+      data: []
     };
   }
 
@@ -31,9 +28,8 @@ class App extends Component{
   componentDidMount(){
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Cats&text=Cats&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
-      console.log(response.data.photos)
       this.setState({
-        cats: response.data.photos
+        data: response.data.photos.photo
       })
     })
     .catch(error => {
@@ -41,9 +37,8 @@ class App extends Component{
     })
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Dogs&text=Dogs&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
-      console.log(response.data.photos)
       this.setState({
-        dogs: response.data.photos
+        data: response.data.photos.photo
       })
     })
     .catch(error => {
@@ -51,9 +46,8 @@ class App extends Component{
     })
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Computers&text=Computers&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
-      console.log(response.data.photos)
       this.setState({
-        computers: response.data.photos
+        data: response.data.photos.photo
       })
     })
     .catch(error => {
@@ -62,6 +56,7 @@ class App extends Component{
   }
 
   render() {
+    console.log(this.state.dogs);
     return (       
       <Router>
       <div className="App">
@@ -71,16 +66,20 @@ class App extends Component{
           <NavRouter  />
         </div>
         <div className="photo-container">
+          {/* //renders the information based on what the route is  */}
           <Switch>
-            <Route exact path="/" component={PhotoList} />
+            <Route exact path="/" render={props => (
+              <PhotoList data={this.state.data} />
+            )} />
             <Route path="/cats" render={props => (
-              <PhotoList cats={this.state.cats} />
+              <PhotoList 
+              data={this.state.data} />
             )} />
             <Route path="/dogs" render={props => (
-              <PhotoList dogs={this.state.dogs} />
+              <PhotoList data={this.state.data} />
             )} />
             <Route path="/computers" render={props => (
-              <PhotoList computers={this.state.computers} />
+              <PhotoList data={this.state.data} />
             )} />
             <Route component={NotFound} />
           </Switch>
