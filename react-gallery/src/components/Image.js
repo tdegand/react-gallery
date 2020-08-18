@@ -3,8 +3,7 @@ import React from 'react';
 const Image = props => {
     return(
         <li>
-            <img></img>
-            {/* <img src= {`https://farm${this.props.farm}.staticflickr.com/${props.server}/${props.id}_${props.secret}.jpg`} alt="" /> */}
+            <img src= {`https://farm${this.props.farm}.staticflickr.com/${props.server}/${props.id}_${props.secret}.jpg`} alt="" />
         </li>
     )
 }
