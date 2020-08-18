@@ -11,7 +11,10 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
-      images: []
+      topic1: [],
+      topic2: [],
+      topic3: [],
+      search: []
     };
   }
 
