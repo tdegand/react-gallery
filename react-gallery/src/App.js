@@ -5,6 +5,7 @@ import SearchForm from './components/Search';
 import NavRouter from './components/NavRouter';
 import PhotoList from './components/PhotoList'
 import NotFound from './components/NotFound';
+import apiKey from './components/config'
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,13 +17,16 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
+      recent: [],
       cats: [],
       dogs: [],
       computers: [],
+      name: []
     };
   }
 
   componentDidMount() {
+    this.fetchRecent();
     this.fetchCats();
     this.fetchDogs();
     this.fetchComputers();
@@ -30,8 +34,19 @@ class App extends Component{
   }
 
   //API call for the images to get it started
+  fetchRecent(){
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=Any&per_page=24&format=json&nojsoncallback=1`)
+    .then(response => {
+      this.setState({
+        recent: response.data.photos.photo
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
+}
   fetchCats(){
-      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Cats&per_page=24&format=json&nojsoncallback=1`)
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=Cats&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
           cats: response.data.photos.photo
@@ -43,7 +58,7 @@ class App extends Component{
   }
 
   fetchDogs(){
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=dogs&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=dogs&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState({
         dogs: response.data.photos.photo
@@ -55,7 +70,7 @@ class App extends Component{
 }
 
 fetchComputers(){
-  axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Computers&per_page=24&format=json&nojsoncallback=1`)
+  axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=Computers&per_page=24&format=json&nojsoncallback=1`)
   .then(response => {
     this.setState({
       computers: response.data.photos.photo
@@ -67,10 +82,11 @@ fetchComputers(){
 }
        
   searchHandler = (input) => {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=${input}&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${input}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState({
-        data: response.data.photos.photo
+        data: response.data.photos.photo,
+        name: input
       })
     })
     .catch(error => {
@@ -79,8 +95,6 @@ fetchComputers(){
   }
 
   render() {
-    let pathname = window.location.pathname
-    console.log(pathname)
     return ( 
       <Router>
         <div className="App">
@@ -92,39 +106,37 @@ fetchComputers(){
 
             <NavRouter  />
           </div>
-          <div className="photo-container">
             {/* //renders the information based on what the route is  */}
             <Switch>
 
               <Route 
               exact path="/" 
-              render={() => ( <PhotoList data={this.state.cats} /> )} 
+              render={() => ( <PhotoList data={this.state.recent} name={'Recent'} /> )} 
               />
 
               <Route 
               exact path="/cats" 
-              render={() => ( <PhotoList data={this.state.cats} /> )} 
+              render={() => ( <PhotoList data={this.state.cats} name={'Cats'}  /> )} 
               />
 
               <Route 
               exact path="/dogs" 
-              render={() => ( <PhotoList data={this.state.dogs} /> )} 
+              render={() => ( <PhotoList data={this.state.dogs} name={'Dogs'}  /> )} 
               />
 
               <Route 
               exact path="/computers" 
-              render={() => ( <PhotoList data={this.state.computers} /> )} 
+              render={() => ( <PhotoList data={this.state.computers} name={'Computers'}  /> )} 
               />
 
               <Route 
               exact path="/search/:query" 
-              render={() => ( <PhotoList data={this.state.data} /> )} 
+              render={() => ( <PhotoList data={this.state.data} name={this.state.name} /> )} 
               />
 
               <Route component={NotFound} />
             </Switch>
           </div>
-        </div>
       </Router>
     );
   }

@@ -17,9 +17,12 @@ const PhotoList = props => {
         );
 
     return(
-        <ul>
-            { imageData }
-        </ul>
+        <div className="photo-container">
+            <h3>{props.name}</h3>
+            <ul>
+                { imageData }
+            </ul>
+        </div>
     )
 }
 
