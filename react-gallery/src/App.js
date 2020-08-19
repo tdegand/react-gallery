@@ -132,7 +132,7 @@ fetchComputers(){
               />
 
               <Route 
-              exact path="/search/:query" 
+              path="/search/:query" 
               render={() => ( <PhotoList data={this.state.data} name={this.state.name} /> )} 
               />
 
