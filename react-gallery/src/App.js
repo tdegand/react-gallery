@@ -5,7 +5,7 @@ import SearchForm from './components/Search';
 import NavRouter from './components/NavRouter';
 import PhotoList from './components/PhotoList'
 import NotFound from './components/NotFound';
-import apiKey from './components/config'
+import apiKey from './config'
 import {
   BrowserRouter as Router,
   Switch,
