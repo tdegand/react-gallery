@@ -1,5 +1,6 @@
 //stateless component
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 // Displays the Top level navigation
 class Nav extends React.Component{
@@ -7,9 +8,9 @@ class Nav extends React.Component{
         return(
             <nav className="main-nav">
                 <ul>
-                <li><a href='/cats'>Cats</a></li>
-                <li><a href='/dogs'>Dogs</a></li>
-                <li><a href='/computers'>Computers</a></li>
+                <li><NavLink to='/cats'>Cats</NavLink></li>
+                <li><NavLink to='/dogs'>Dogs</NavLink></li>
+                <li><NavLink to='/computers'>Computers</NavLink></li>
                 </ul>
             </nav>
         )

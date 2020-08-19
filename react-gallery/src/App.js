@@ -9,7 +9,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
+  withRouter
 } from "react-router-dom";
 
 class App extends Component{
@@ -33,8 +33,19 @@ class App extends Component{
         console.log(error);
       })
   }
-  
- 
+       
+  searchHandler = (input) => {
+    // axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=${input}&text=${input}&per_page=24&format=json&nojsoncallback=1`)
+    // .then(response => {
+    //   this.setState({
+    //     data: response.data.photos.photo
+    //   })
+    // })
+    // .catch(error => {
+    //   console.log(error);
+    // }) 
+  }
+
   render() {
     let pathName = (window.location.pathname)
     console.log(pathName)
@@ -42,7 +53,7 @@ class App extends Component{
       <Router>
       <div className="App">
         <div className="container">  
-          <SearchForm />
+          <SearchForm  search={this.searchHandler()}/>
           <NavRouter  />
         </div>
         <div className="photo-container">
@@ -54,9 +65,9 @@ class App extends Component{
             <Route exact path="/:page" render={props => (
               <PhotoList data={this.state.data} />
             )} />
-            {/* <Route path="/:page?search=" render={props => (
-              // <Redirect push to={`/${queryString}`} />
-            )} /> */}
+            {/* <Route path="/:page?search=" 
+              <Redirect
+            /> */}
             <Route component={NotFound} />
           </Switch>
         </div>
