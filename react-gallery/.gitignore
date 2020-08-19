@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 #API Key file
-/src/components/config.js
+/src/config.js
