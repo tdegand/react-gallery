@@ -73,6 +73,12 @@ input {
   background-color: #27702f;
 }
 
+h3 {
+  font-weight: 800;
+  text-transform: capitalize;
+  font-size: 24px;
+}
+
 .photo-container ul {
   display: flex;
   flex-flow: row wrap;
