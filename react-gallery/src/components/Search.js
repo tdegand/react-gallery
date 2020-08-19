@@ -1,5 +1,6 @@
 //state component for search bar
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 
 //Creates Search from users will use to search for images
 
@@ -12,21 +13,27 @@ class SearchForm extends Component {
         }
     }
 
-    handleChange() {
-        this.setState({
-            input: this.search.value
-        })
+    handleChange = (e) => {
+        this.setState({ input: e.target.value })
+    };
+
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        let pathname = `/search/${this.state.input}`
+        this.props.search(this.state.input)
+        this.props.history.push(pathname);
+        e.currentTarget.reset();
     }
 
     render() {
         return(
-            <form className="search-form" onSubmit={this.handleChange}>
+            <form className="search-form" onSubmit={this.handleFormSubmit}>
                 <input 
                     type="search" 
                     name="search" 
                     placeholder="Search" 
                     required
-                    ref={input => this.search = input}
+                    onChange={this.handleChange}
                 />
                 <button type="submit" className="search-button">
                 <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -34,9 +41,6 @@ class SearchForm extends Component {
                     <path d="M0 0h24v24H0z" fill="none"/>
                 </svg>
                 </button>
-
-                
-            <p>{this.state.input}</p>
             </form>
 
             
@@ -44,4 +48,4 @@ class SearchForm extends Component {
     }      
 }
 
-export default SearchForm
+export default withRouter(SearchForm);
