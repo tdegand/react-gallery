@@ -2,6 +2,9 @@ body {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   color: #3f4850;
+  background-image: url(./assets/criss-cross.png);
+  background-position: center;
+  background-repeat: repeat;
 }
 
 h2 {
@@ -27,11 +30,12 @@ a {
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
+  background-color: #43bd55;
   border: none;
   padding: 0px 15px;
   border-radius: 0 0.35em 0.35em 0;
   cursor: pointer;
+  transition: all ease-out .3s;
 }
 
 input {
@@ -39,7 +43,7 @@ input {
   width: 100%;
   background-color: #edeff0;
   padding: 10px 15px;
-  border: 3px solid #d7dbdf;
+  border: 3px solid #777777;
   border-right: none;
   border-radius: 0.35em 0 0 0.35em;
   outline: none;
@@ -52,16 +56,21 @@ input {
 
 .main-nav a {
   display: block;
-  background: #438bbd;
+  background: #43bd55;
   border-radius: 3px;
   padding: 5px;
   color: #fff;
+  box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, .5);
+  transition: all ease-out .3s;
+}
+.main-nav a:hover {
+  box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, .5);
 }
 
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: #27702f;
 }
 
 .photo-container ul {
@@ -70,6 +79,8 @@ input {
   justify-content: space-between;
   -ms-align-items: flex-start;
   align-items: flex-start;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .photo-container ul li {
@@ -77,6 +88,8 @@ input {
   height: 165px;
   overflow: hidden;
   margin-bottom: 15px;
+  border: solid 3px #BD43AB;
+  border-radius: 5px;
 }
 
 .photo-container ul img {
