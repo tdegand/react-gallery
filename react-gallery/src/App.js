@@ -16,29 +16,58 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
-      data: [],
+      cats: [],
+      dogs: [],
+      computers: [],
     };
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchCats();
+    this.fetchDogs();
+    this.fetchComputers();
+    this.searchHandler();
   }
 
   //API call for the images to get it started
-  fetchData(){
-      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=${window.location.pathname}&per_page=24&format=json&nojsoncallback=1`)
+  fetchCats(){
+      axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Cats&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          data: response.data.photos.photo
+          cats: response.data.photos.photo
         })
       })
       .catch(error => {
         console.log(error);
       })
   }
+
+  fetchDogs(){
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=dogs&per_page=24&format=json&nojsoncallback=1`)
+    .then(response => {
+      this.setState({
+        dogs: response.data.photos.photo
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
+}
+
+fetchComputers(){
+  axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=Computers&per_page=24&format=json&nojsoncallback=1`)
+  .then(response => {
+    this.setState({
+      computers: response.data.photos.photo
+    })
+  })
+  .catch(error => {
+    console.log(error);
+  })
+}
        
-  searchHandler = (query) => {
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+  searchHandler = (input) => {
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=622ac78a6d9e7d1350206211b652a6af&tags=${input}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState({
         data: response.data.photos.photo
@@ -50,7 +79,8 @@ class App extends Component{
   }
 
   render() {
-    const { data } = this.state;
+    let pathname = window.location.pathname
+    console.log(pathname)
     return ( 
       <Router>
         <div className="App">
@@ -68,17 +98,27 @@ class App extends Component{
 
               <Route 
               exact path="/" 
-              render={() => ( <PhotoList data={ data } /> )} 
+              render={() => ( <PhotoList data={this.state.cats} /> )} 
               />
 
               <Route 
-              exact path="/:page" 
-              render={() => ( <PhotoList data={ data } /> )} 
+              exact path="/cats" 
+              render={() => ( <PhotoList data={this.state.cats} /> )} 
+              />
+
+              <Route 
+              exact path="/dogs" 
+              render={() => ( <PhotoList data={this.state.dogs} /> )} 
+              />
+
+              <Route 
+              exact path="/computers" 
+              render={() => ( <PhotoList data={this.state.computers} /> )} 
               />
 
               <Route 
               exact path="/search/:query" 
-              render={() => ( <PhotoList data={ data } /> )} 
+              render={() => ( <PhotoList data={this.state.data} /> )} 
               />
 
               <Route component={NotFound} />
