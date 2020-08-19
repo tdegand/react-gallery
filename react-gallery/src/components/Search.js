@@ -12,11 +12,12 @@ class SearchForm extends Component {
           input: '',
         }
     }
-
+    //Handles the Change of the input field
     handleChange = (e) => {
         this.setState({ input: e.target.value })
     };
 
+    //Handles the form submisson and stores teh history of the URL path
     handleFormSubmit = (e) => {
         e.preventDefault();
         let pathname = `/search/${this.state.input}`

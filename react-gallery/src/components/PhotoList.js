@@ -5,6 +5,7 @@ import Image from './Image';
 
 const PhotoList = props => {
 
+        // Generates photo information for the URL
         let imageData= props.data.map(data => 
             <Image 
                 farm={data.farm}

@@ -45,6 +45,7 @@ class App extends Component{
       console.log(error);
     })
 }
+// cat call
   fetchCats(){
       axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=Cats&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
@@ -56,7 +57,7 @@ class App extends Component{
         console.log(error);
       })
   }
-
+// dog call
   fetchDogs(){
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=dogs&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
@@ -68,7 +69,7 @@ class App extends Component{
       console.log(error);
     })
 }
-
+// computer call
 fetchComputers(){
   axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=Computers&per_page=24&format=json&nojsoncallback=1`)
   .then(response => {
@@ -80,7 +81,7 @@ fetchComputers(){
     console.log(error);
   })
 }
-       
+    // search call (Only called when a user submits the search)
   searchHandler = (input) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${input}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
@@ -109,6 +110,7 @@ fetchComputers(){
             {/* //renders the information based on what the route is  */}
             <Switch>
 
+              {/* Home path */}
               <Route 
               exact path="/" 
               render={() => ( <PhotoList data={this.state.recent} name={'Recent'} /> )} 
